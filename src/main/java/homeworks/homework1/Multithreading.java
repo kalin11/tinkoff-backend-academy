@@ -40,7 +40,6 @@ public class Multithreading {
 @Getter
 class Variable {
     private int x = 1;
-
     public synchronized void inc() {
         for (int i = 0; i < 10_000; i++) {
             x += 1;
