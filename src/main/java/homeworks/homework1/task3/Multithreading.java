@@ -17,8 +17,7 @@ public class Multithreading {
         }
 
         service.shutdown();
-        while (!service.isTerminated()) {
-        }
+        while (!service.isTerminated()) {}
 
         System.out.println(variable.getX());
     }
