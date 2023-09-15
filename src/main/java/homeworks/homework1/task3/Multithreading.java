@@ -1,4 +1,4 @@
-package homeworks.homework1;
+package homeworks.homework1.task3;
 
 import lombok.Getter;
 

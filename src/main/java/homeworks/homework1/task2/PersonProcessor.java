@@ -1,4 +1,4 @@
-package homeworks.homework1;
+package homeworks.homework1.task2;
 
 @FunctionalInterface
 public interface PersonProcessor {

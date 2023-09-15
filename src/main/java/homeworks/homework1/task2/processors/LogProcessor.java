@@ -1,7 +1,7 @@
-package homeworks.homework1.processors;
+package homeworks.homework1.task2.processors;
 
-import homeworks.homework1.Person;
-import homeworks.homework1.PersonProcessor;
+import homeworks.homework1.task2.Person;
+import homeworks.homework1.task2.PersonProcessor;
 
 public class LogProcessor implements PersonProcessor {
     @Override

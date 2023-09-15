@@ -1,8 +1,8 @@
-package homeworks.homework1;
+package homeworks.homework1.task2;
 
-import homeworks.homework1.processors.LogProcessor;
-import homeworks.homework1.processors.RemoveFriendProcessor;
-import homeworks.homework1.processors.SwapParentsProcessor;
+import homeworks.homework1.task2.processors.LogProcessor;
+import homeworks.homework1.task2.processors.RemoveFriendProcessor;
+import homeworks.homework1.task2.processors.SwapParentsProcessor;
 
 import java.util.List;
 
