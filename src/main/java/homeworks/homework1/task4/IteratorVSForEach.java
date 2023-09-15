@@ -70,7 +70,7 @@ public class IteratorVSForEach {
             }
         }
 
-        // it will fail because iterator points to next element every time
+        // it will fail because iterator points to the next element every time
         for (var iter = nums.iterator(); iter.hasNext();) {
             for (var iter2 = nums2.iterator(); iter2.hasNext();) {
                 if (iter.next() < iter2.next()) {

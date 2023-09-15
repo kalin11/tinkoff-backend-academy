@@ -16,19 +16,6 @@ public class Multithreading {
             service.execute(runnable);
         }
 
-/*      можно создавать самому потоки, но это неудобно
-
-        Thread t1 = new Thread(runnable);
-        Thread t2 = new Thread(runnable);
-        Thread t3 = new Thread(runnable);
-        t1.start();
-        t2.start();
-        t3.start();
-
-        t1.join();
-        t2.join();
-        t3.join();
-*/
         service.shutdown();
         while (!service.isTerminated()) {
         }
