@@ -1,21 +1,30 @@
 package homeworks.homework1.task4;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class IteratorVSForEach {
     public static void main(String[] args) {
-
         // example 1
+        concurrentModificationExample();
 
-        List<Integer> numbers = new ArrayList<>() {{
-            add(1);
-            add(2);
-            add(3);
-            add(4);
-            add(5);
-        }};
+        // example 2
+
+        staticArrays();
+
+        // example 3
+
+        nestedLoops();
+
+        // example 4
+        breakingWhileIteration();
+    }
+
+    private static void concurrentModificationExample() {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 1; i < 6; i++) {
+            numbers.add(i);
+        }
+
         var iterator = numbers.iterator();
         while (iterator.hasNext()) {
             if (iterator.next() == 3) {
@@ -27,41 +36,38 @@ public class IteratorVSForEach {
 
 
         // it will fail with Concurrent Modification Exception
-        for (Integer num : numbers) {
-            if (num == 2) {
-                numbers.remove(num);
+        try {
+            for (Integer num : numbers) {
+                if (num == 2) {
+                    numbers.remove(num);
+                }
             }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("for each loop failed");
         }
+    }
 
-        System.out.println("for each loop did it");
-
-
-        // example 2
-
-        int[] arr = new int[] {1,2,3,4,5};
+    // but we can't use iterators for arrays. the only way to do this is to use stream of this array
+    private static void staticArrays() {
+        int[] arr = new int[]{1, 2, 3, 4, 5};
         for (int x : arr) {
             System.out.print(x + " ");
         }
+        System.out.println();
+    }
 
-        // but we can't use iterators for arrays. the only way to do this is to use stream of this array
+    private static void nestedLoops() {
+        List<Integer> nums = new ArrayList<>();
+        nums.add(2);
+        nums.add(3);
+        nums.add(4);
 
+        List<Integer> nums2 = new ArrayList<>();
+        nums2.add(2);
+        nums2.add(4);
+        nums2.add(5);
+        nums2.add(6);
 
-        // example 3
-
-        List<Integer> nums = new LinkedList<>() {{
-            add(2);
-            add(3);
-            add(4);
-        }};
-
-        List<Integer> nums2 = new LinkedList<>() {{
-            add(2);
-            add(4);
-            add(5);
-            add(6);
-        }};
-
-        // it will work
         for (int num1 : nums) {
             for (int num2 : nums2) {
                 if (num1 < num2) {
@@ -69,16 +75,50 @@ public class IteratorVSForEach {
                 }
             }
         }
+        System.out.println();
 
-        // it will fail because iterator points to the next element every time
-        for (var iter = nums.iterator(); iter.hasNext();) {
-            for (var iter2 = nums2.iterator(); iter2.hasNext();) {
-                if (iter.next() < iter2.next()) {
-                    System.out.println(iter + " ");
-                }
+        List<String> outerList = new ArrayList<>();
+        outerList.add("A");
+        outerList.add("B");
+        outerList.add("C");
+
+        List<Integer> innerList = new ArrayList<>();
+        innerList.add(1);
+        innerList.add(2);
+        innerList.add(3);
+
+        // Вложенный цикл с использованием итераторов
+        Iterator<String> outerIterator = outerList.iterator();
+        while (outerIterator.hasNext()) {
+            String outerElement = outerIterator.next();
+            Iterator<Integer> innerIterator = innerList.iterator();
+            while (innerIterator.hasNext()) {
+                Integer innerElement = innerIterator.next();
+                System.out.println(outerElement + " " + innerElement);
             }
         }
-
-
     }
+
+    // using Iterator we can check some conditions and break our loop.
+    // but when we use forEach we can't break white iterating.
+    private static void breakingWhileIteration() {
+        List<String> seasons = new ArrayList<>();
+        seasons.add("Winter");
+        seasons.add("Spring");
+        seasons.add("Summer");
+        seasons.add("Fall");
+
+        for (var seasonsIterator = seasons.iterator(); seasonsIterator.hasNext(); ) {
+            String current = seasonsIterator.next();
+            if (current.equals("Summer")) {
+                System.out.println("Vacation yeeey");
+                break;
+            } else {
+                System.out.println(current);
+            }
+        }
+        System.out.println();
+        seasons.forEach(System.out::println);
+    }
+
 }

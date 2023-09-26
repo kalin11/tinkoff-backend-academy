@@ -6,8 +6,8 @@ import homeworks.homework1.task2.PersonProcessor;
 public class SwapParentsProcessor implements PersonProcessor {
     @Override
     public void process(Person person) {
-        Person temp = person.getMother();
+        Person motherBefore = person.getMother();
         person.setMother(person.getFather());
-        person.setFather(temp);
+        person.setFather(motherBefore);
     }
 }
